@@ -9,4 +9,9 @@ terraform {
 
 provider "aws" {
   region = "ap-south-1"
+
+  assume_role {
+    role_arn = "arn:aws:iam::245221346839:role/terraform-execution-role"
+  }
 }
+

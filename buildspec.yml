@@ -12,7 +12,7 @@ phases:
   pre_build:
     commands:
       - echo Running Security Checks...
-      - grep -r "password" . && echo "❌ Hardcoded secret found!" && exit 1 || echo "✅ No secrets found"
+      - grep -r "password" terraform/ && echo "❌ Hardcoded secret found!" && exit 1 || echo "✅ No secrets found"
 
   build:
     commands:

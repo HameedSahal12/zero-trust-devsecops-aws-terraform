@@ -10,9 +10,17 @@ phases:
       - terraform version
 
   pre_build:
-    commands:
-      - echo Running Security Checks...
-      - grep -r "password" terraform/ && echo "❌ Hardcoded secret found!" && exit 1 || echo "✅ No secrets found"
+  commands:
+    - echo Running Security Checks...
+
+    # Existing basic check
+    - grep -r "password" terraform/ && echo "❌ Hardcoded secret found!" && exit 1 || echo "✅ No secrets found"
+
+    # NEW: Install Checkov
+    - pip install checkov
+
+    # NEW: Run Checkov scan
+    - checkov -d terraform/
 
   build:
     commands:
